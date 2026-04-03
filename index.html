@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITRO CLASSIC | Digital Garage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    <nav class="glass-nav">
+        <div class="logo">NITRO<span>CLASSIC</span></div>
+        <div class="nav-links">
+            <a href="#home"><i class="fas fa-bolt"></i> Accueil</a>
+            <a href="#garage"><i class="fas fa-car"></i> Le Garage</a>
+            <button id="theme-toggle"><i class="fas fa-sun"></i></button>
+        </div>
+    </nav>
 
+    <header id="home" class="hero">
+        <div class="hero-video-overlay"></div>
+        <div class="hero-content">
+            <h1 class="glitch">PURE METAL</h1>
+            <p>L'alliance du vintage industriel et de la haute performance.</p>
+            <a href="#garage" class="btn-neo">EXPLORER LES 20 LÉGENDES</a>
+        </div>
+    </header>
+
+    <section id="garage" class="container">
+        <h2 class="section-title"><i class="fas fa-microchip"></i> LE GARAGE DIGITAL</h2>
+        <div class="car-grid" id="carGrid">
+            </div>
+    </section>
+
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-grid">
+                <div class="engine-3d">
+                    <h3><i class="fas fa-cylinder"></i> Cœur Mécanique 3D</h3>
+                    <div id="sketchfab-container"></div>
+                </div>
+                <div class="interior-gallery">
+                    <h3><i class="fas fa-couch"></i> Habitacle</h3>
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper" id="interiorSlides">
+                            </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="car-history">
+                <h2 id="modalTitle">Nom de la voiture</h2>
+                <p id="modalDesc">L'histoire s'affiche ici...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
