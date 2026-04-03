@@ -1,56 +1,50 @@
-const cars = [
-    { id: 1, name: "Bugatti Chiron", brand: "Bugatti", engine: "771e23097e414da3b89531818274737d", desc: "La quintessence du W16..." },
-    { id: 2, name: "Ferrari LaFerrari", brand: "Ferrari", engine: "6b2a060133914a2295f554620f1d9370", desc: "Le premier hybride de Maranello..." },
-    // ... Ajoute les 18 autres ici sur le même modèle
-];
+gsap.registerPlugin(ScrollTrigger);
 
-const carGrid = document.getElementById('carGrid');
-const modal = document.getElementById('carModal');
-
-// Génération des 20 cartes
-cars.forEach(car => {
-    carGrid.innerHTML += `
-        <div class="car-card" onclick="openCar(${car.id})">
-            <img src="https://source.unsplash.com/featured/?${car.name.replace(' ', '')}" alt="${car.name}">
-            <h3>${car.brand}</h3>
-            <p>${car.name}</p>
-            <i class="fas fa-plus-circle" style="color: var(--primary)"></i>
-        </div>
-    `;
+// 1. Animation d'entrée (Loader)
+window.addEventListener('load', () => {
+    const tl = gsap.timeline();
+    tl.to(".loader", { duration: 1, y: "-100%", ease: "power4.inOut" })
+      .from(".hero h1", { duration: 1.2, y: 100, opacity: 0, stagger: 0.2, ease: "power4.out" }, "-=0.5")
+      .from("nav", { opacity: 0, y: -20 }, "-=1");
 });
 
-function openCar(id) {
-    const car = cars.find(c => c.id === id);
-    document.getElementById('modalTitle').innerText = car.name;
-    document.getElementById('modalDesc').innerText = car.desc;
-    
-    // Intégration Sketchfab 3D
-    document.getElementById('sketchfab-container').innerHTML = `
-        <iframe src="https://sketchfab.com/models/${car.engine}/embed?autostart=1&ui_theme=dark"></iframe>
-    `;
+// 2. Animation de texte qui suit le scroll (Parallaxe)
+gsap.to(".hero h1", {
+    scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    },
+    x: -200,
+    opacity: 0
+});
 
-    // Carrousel Intérieur (Images démo)
-    const interiorSlides = document.getElementById('interiorSlides');
-    interiorSlides.innerHTML = `
-        <div class="swiper-slide"><img src="https://source.unsplash.com/featured/?car,interior"></div>
-        <div class="swiper-slide"><img src="https://source.unsplash.com/featured/?dashboard,car"></div>
-        <div class="swiper-slide"><img src="https://source.unsplash.com/featured/?steeringwheel"></div>
-    `;
-
-    modal.style.display = "block";
-    
-    // Init Swiper après affichage
-    new Swiper(".mySwiper", {
-        pagination: { el: ".swiper-pagination", clickable: true },
-        autoplay: { delay: 3000 }
+// 3. Révélation des cartes au scroll
+gsap.utils.toArray('.car-card').forEach(card => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
     });
-}
+});
 
-// Fermeture Modal
-document.querySelector('.close-modal').onclick = () => modal.style.display = "none";
-window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
+// 4. Curseur personnalisé (Effet Wouah)
+const cursor = document.createElement("div");
+cursor.style.cssText = "position:fixed; width:20px; height:20px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; mix-blend-mode:difference; transition: transform 0.1s";
+document.body.appendChild(cursor);
 
-// Mode Sombre / Clair toggle
-document.getElementById('theme-toggle').onclick = () => {
-    document.body.classList.toggle('light-mode'); // À définir en CSS si besoin d'un mode clair très blanc
-};
+window.addEventListener("mousemove", e => {
+    gsap.to(cursor, { x: e.clientX - 10, y: e.clientY - 10, duration: 0.5 });
+});
+
+// Agrandi le curseur sur les liens
+document.querySelectorAll('a, button, .car-card').forEach(el => {
+    el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 4 }));
+    el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1 }));
+});
