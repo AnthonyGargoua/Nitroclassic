@@ -2,42 +2,42 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MyTraining - Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ON AIR - PPL PRO</title>
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/180/000000/FFFFFF?text=OA">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
+    <div class="bg-gradient"></div>
+
     <header>
-        <div class="header-content">
-            <h1>ON <span class="accent">AIR</span> SESSION</h1>
-            <p id="current-day-display">Lundi - Push</p>
+        <div class="status-bar-spacer"></div> <div class="header-content">
+            <span class="brand">ON <span class="accent">AIR</span></span>
+            <h1 id="current-day-name">Lundi</h1>
+            <p id="current-specialty">Push - Pecs/Épaules/Triceps</p>
         </div>
     </header>
 
     <main id="app">
-        <section id="timer-section">
-            <div class="timer-card">
-                <div id="timer-display">01:30</div>
-                <div class="timer-controls">
-                    <button onclick="startTimer(60)">1m</button>
-                    <button onclick="startTimer(90)" class="active">1m30</button>
-                    <button onclick="resetTimer()"><i class="fas fa-undo"></i></button>
-                </div>
-            </div>
-        </section>
+        <div id="floating-timer" class="hidden">
+            <span id="timer-display">01:30</span>
+            <button onclick="resetTimer()"><i class="fas fa-times"></i></button>
+        </div>
 
         <section id="workout-list">
             </section>
     </main>
 
     <nav class="tab-bar">
-        <button onclick="loadDay('Lundi')" class="nav-item active"><i class="fas fa-bolt"></i><span>Push</span></button>
-        <button onclick="loadDay('Mardi')" class="nav-item"><i class="fas fa-backspace"></i><span>Pull</span></button>
-        <button onclick="loadDay('Mercredi')" class="nav-item"><i class="fas fa-dumbbell"></i><span>Legs</span></button>
-        <button onclick="toggleStats()" class="nav-item"><i class="fas fa-chart-line"></i><span>Stats</span></button>
-    </nav>
+        <button onclick="loadDay('Lundi')" class="nav-item active"><span>Lun</span></button>
+        <button onclick="loadDay('Mardi')" class="nav-item"><span>Mar</span></button>
+        <button onclick="loadDay('Mercredi')" class="nav-item"><span>Mer</span></button>
+        <button onclick="loadDay('Jeudi')" class="nav-item"><span>Jeu</span></button>
+        <button onclick="loadDay('Vendredi')" class="nav-item"><span>Ven</span></button>
+        <button onclick="loadDay('Samedi')" class="nav-item"><span>Sam</span></button>
+        <div class="safe-area-spacer"></div> </nav>
 
     <script src="script.js"></script>
 </body>
