@@ -2,176 +2,43 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITRO CLASSIC | Digital Garage 2026</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MyTraining - Pro</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="dark-mode">
+<body>
 
-    <div class="loader">
-        <div class="loader-content">
-            <span class="logo">NITRO<span>CLASSIC</span></span>
-            <div class="bar"></div>
-        </div>
-    </div>
-
-    <nav>
-        <div class="logo">NITRO<span>CLASSIC</span></div>
-        <div class="nav-links">
-            <a href="#home">HOME</a>
-            <a href="#garage">GARAGE</a>
-            <button id="theme-toggle"><i class="fas fa-bolt"></i></button>
-        </div>
-    </nav>
-
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="glitch-text">RAW <span>METAL</span></h1>
-            <p>L'ÉLITE AUTOMOBILE. 20 LÉGENDES. ZÉRO COMPROMIS.</p>
-            <a href="#garage" class="btn-neo">ENTRER DANS LE GARAGE</a>
+    <header>
+        <div class="header-content">
+            <h1>ON <span class="accent">AIR</span> SESSION</h1>
+            <p id="current-day-display">Lundi - Push</p>
         </div>
     </header>
 
-    <main id="garage" class="container">
-        <div class="section-header">
-            <h2 class="section-title">01 // SELECTED MACHINES</h2>
-            <p>Cliquez sur une machine pour explorer ses entrailles 3D et son histoire.</p>
-        </div>
-
-        <div class="car-grid">
-            <div class="car-card" data-id="1">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80" alt="Porsche 911"></div>
-                <div class="info"><span>01</span><h3>PORSCHE 911 GT3 RS</h3></div>
+    <main id="app">
+        <section id="timer-section">
+            <div class="timer-card">
+                <div id="timer-display">01:30</div>
+                <div class="timer-controls">
+                    <button onclick="startTimer(60)">1m</button>
+                    <button onclick="startTimer(90)" class="active">1m30</button>
+                    <button onclick="resetTimer()"><i class="fas fa-undo"></i></button>
+                </div>
             </div>
+        </section>
 
-            <div class="car-card" data-id="2">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&q=80" alt="Ferrari LaFerrari"></div>
-                <div class="info"><span>02</span><h3>FERRARI LAFERRARI</h3></div>
-            </div>
-
-            <div class="car-card" data-id="3">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80" alt="Lamborghini Aventador"></div>
-                <div class="info"><span>03</span><h3>LAMBO AVENTADOR</h3></div>
-            </div>
-
-            <div class="car-card" data-id="4">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80" alt="Bugatti Chiron"></div>
-                <div class="info"><span>04</span><h3>BUGATTI CHIRON</h3></div>
-            </div>
-
-            <div class="car-card" data-id="5">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&q=80" alt="McLaren P1"></div>
-                <div class="info"><span>05</span><h3>MCLAREN P1</h3></div>
-            </div>
-
-            <div class="car-card" data-id="6">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&q=80" alt="Aston Martin"></div>
-                <div class="info"><span>06</span><h3>ASTON VALKYRIE</h3></div>
-            </div>
-
-            <div class="car-card" data-id="7">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80" alt="BMW M4"></div>
-                <div class="info"><span>07</span><h3>BMW M4 CSL</h3></div>
-            </div>
-
-            <div class="car-card" data-id="8">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1617469767053-d3b508a0d182?auto=format&fit=crop&q=80" alt="Nissan GTR"></div>
-                <div class="info"><span>08</span><h3>NISSAN GT-R NISMO</h3></div>
-            </div>
-
-            <div class="car-card" data-id="9">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80" alt="Shelby Cobra"></div>
-                <div class="info"><span>09</span><h3>SHELBY COBRA</h3></div>
-            </div>
-
-            <div class="car-card" data-id="10">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1542362567-b05503f3af15?auto=format&fit=crop&q=80" alt="Audi R8"></div>
-                <div class="info"><span>10</span><h3>AUDI R8 V10</h3></div>
-            </div>
-
-            <div class="car-card" data-id="11">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1555353540-64580b51c258?auto=format&fit=crop&q=80" alt="Ford GT"></div>
-                <div class="info"><span>11</span><h3>FORD GT 40</h3></div>
-            </div>
-
-            <div class="car-card" data-id="12">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80" alt="Mercedes AMG"></div>
-                <div class="info"><span>12</span><h3>MERCEDES AMG ONE</h3></div>
-            </div>
-
-            <div class="car-card" data-id="13">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1566473065136-ca4f5075c3ad?auto=format&fit=crop&q=80" alt="Koenigsegg"></div>
-                <div class="info"><span>13</span><h3>KOENIGSEGG JESKO</h3></div>
-            </div>
-
-            <div class="car-card" data-id="14">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1603584173870-7f1b0bb077ec?auto=format&fit=crop&q=80" alt="Pagani"></div>
-                <div class="info"><span>14</span><h3>PAGANI HUAYRA</h3></div>
-            </div>
-
-            <div class="car-card" data-id="15">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&q=80" alt="Toyota Supra"></div>
-                <div class="info"><span>15</span><h3>TOYOTA SUPRA MK4</h3></div>
-            </div>
-
-            <div class="car-card" data-id="16">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1594246830500-2f98103c830e?auto=format&fit=crop&q=80" alt="Rolls Royce"></div>
-                <div class="info"><span>16</span><h3>ROLLS SPECTRE</h3></div>
-            </div>
-
-            <div class="car-card" data-id="17">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1605515298946-d062f2e9da53?auto=format&fit=crop&q=80" alt="Dodge Challenger"></div>
-                <div class="info"><span>17</span><h3>DODGE DEMON SRT</h3></div>
-            </div>
-
-            <div class="car-card" data-id="18">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1532906130821-44329242f619?auto=format&fit=crop&q=80" alt="Lotus"></div>
-                <div class="info"><span>18</span><h3>LOTUS EVIJA</h3></div>
-            </div>
-
-            <div class="car-card" data-id="19">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?auto=format&fit=crop&q=80" alt="Bentley"></div>
-                <div class="info"><span>19</span><h3>BENTLEY CONTINENTAL</h3></div>
-            </div>
-
-            <div class="car-card" data-id="20">
-                <div class="car-img"><img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&q=80" alt="Rimac"></div>
-                <div class="info"><span>20</span><h3>RIMAC NEVERA</h3></div>
-            </div>
-        </div>
+        <section id="workout-list">
+            </section>
     </main>
 
-    <div id="experience-overlay" class="modal">
-        <div class="modal-nav">
-            <span id="close-modal"><i class="fas fa-times"></i> FERMER</span>
-        </div>
-        <div class="modal-body">
-            <div class="top-section">
-                <div class="engine-view">
-                    <h4>CORE ENGINE 3D</h4>
-                    <div id="sketchfab-frame"></div>
-                </div>
-                <div class="interior-view">
-                    <h4>INTERIOR VIEW</h4>
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper" id="interior-slides"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="history-section">
-                <h2 id="car-name">CAR NAME</h2>
-                <p id="car-history-text">Chargement de l'histoire...</p>
-            </div>
-        </div>
-    </div>
+    <nav class="tab-bar">
+        <button onclick="loadDay('Lundi')" class="nav-item active"><i class="fas fa-bolt"></i><span>Push</span></button>
+        <button onclick="loadDay('Mardi')" class="nav-item"><i class="fas fa-backspace"></i><span>Pull</span></button>
+        <button onclick="loadDay('Mercredi')" class="nav-item"><i class="fas fa-dumbbell"></i><span>Legs</span></button>
+        <button onclick="toggleStats()" class="nav-item"><i class="fas fa-chart-line"></i><span>Stats</span></button>
+    </nav>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
