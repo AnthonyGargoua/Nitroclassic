@@ -138,8 +138,13 @@ function startTimer(seconds) {
         update();
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            display.innerText = "READY!";
-            if (window.navigator.vibrate) window.navigator.vibrate([300, 100, 300]);
+            display.innerText = "GO !";
+            
+            // FONCTION VIBRATION
+            // Séquence : 500ms vibration, 200ms pause, 500ms vibration
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate([500, 200, 500]);
+            }
         }
     }, 1000);
 }
