@@ -53,10 +53,12 @@ const workoutData = {
 
 let timerInterval;
 
+// --- FONCTION PRINCIPALE ---
 function loadDay(day) {
     const data = workoutData[day];
     if (!data) return;
 
+    // Mise à jour de l'en-tête
     document.getElementById('current-day-name').innerText = day;
     document.getElementById('current-specialty').innerText = data.spec;
     document.getElementById('session-duration').innerHTML = `<i class="far fa-clock"></i> ${data.duration} min`;
@@ -64,6 +66,7 @@ function loadDay(day) {
     const container = document.getElementById('workout-list');
     container.innerHTML = ""; 
 
+    // Génération des exercices
     data.exercises.forEach((ex) => {
         const card = document.createElement('div');
         card.className = 'exercise-card';
@@ -104,13 +107,18 @@ function loadDay(day) {
         container.appendChild(card);
     });
 
+    // Mise à jour visuelle des boutons du menu
     document.querySelectorAll('.nav-item').forEach(btn => {
         btn.classList.remove('active');
-        if(btn.innerText.trim() === day.substring(0,3).toUpperCase()) btn.classList.add('active');
+        if(btn.innerText.trim() === day.substring(0,3).toUpperCase()) {
+            btn.classList.add('active');
+        }
     });
+
     window.scrollTo(0,0);
 }
 
+// --- LOGIQUE DU TIMER ---
 function startTimer(seconds) {
     clearInterval(timerInterval);
     const timerBar = document.getElementById('floating-timer');
@@ -145,91 +153,7 @@ function toggleSetCheck(btn) {
     btn.classList.toggle('checked');
 }
 
-window.onload = () => {
-    // 1. On récupère l'index du jour actuel (0 pour Dimanche, 1 pour Lundi, etc.)
-    const dayIndex = new Date().getDay();
-    
-    // 2. On crée une correspondance entre l'index et tes noms de jours
-    const daysMap = {
-        1: 'Lundi',
-        2: 'Mardi',
-        3: 'Mercredi',
-        4: 'Jeudi',
-        5: 'Vendredi',
-        6: 'Samedi',
-        0: 'Lundi' // Si c'est Dimanche (repos), on affiche le programme du Lundi par défaut
-    };
-
-    // 3. On récupère le nom du jour
-    const currentDay = daysMap[dayIndex];
-
-    // 4. On charge le programme
-    function loadDay(day) {
-    const data = workoutData[day];
-    if (!data) return;
-
-    // 1. Mise à jour de l'en-tête
-    document.getElementById('current-day-name').innerText = day;
-    document.getElementById('current-specialty').innerText = data.spec;
-    document.getElementById('session-duration').innerHTML = `<i class="far fa-clock"></i> ${data.duration} min`;
-    
-    const container = document.getElementById('workout-list');
-    container.innerHTML = ""; 
-
-    // 2. Génération des exercices
-    data.exercises.forEach((ex) => {
-        const card = document.createElement('div');
-        card.className = 'exercise-card';
-        
-        let setsHTML = '';
-        for (let i = 1; i <= ex.sets; i++) {
-            setsHTML += `
-                <div class="set-row">
-                    <span class="set-number">${i}</span>
-                    <input type="number" placeholder="kg" inputmode="decimal" pattern="[0-9]*">
-                    <input type="number" placeholder="${ex.reps}" inputmode="numeric" pattern="[0-9]*">
-                    <button class="check-set-btn" onclick="toggleSetCheck(this)">
-                        <i class="fas fa-check"></i>
-                    </button>
-                </div>
-            `;
-        }
-
-        card.innerHTML = `
-            <div class="card-header-img">
-                <img src="${ex.img}" class="exercise-img" loading="lazy">
-                <div class="card-header-text">
-                    <span class="muscle-tag">${ex.muscle}</span>
-                    <h3>${ex.name}</h3>
-                </div>
-            </div>
-            <div class="exercise-logs">
-                <div class="log-labels"><span>SET</span><span>KG</span><span>REPS</span><span>OK</span></div>
-                ${setsHTML}
-                <div class="timer-selector">
-                    <button class="timer-opt" onclick="startTimer(60)">1m</button>
-                    <button class="timer-opt" onclick="startTimer(90)">1m30</button>
-                    <button class="timer-opt" onclick="startTimer(120)">2m</button>
-                    <button class="timer-opt" onclick="startTimer(180)">3m</button>
-                </div>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-
-    // 3. MISE À JOUR VISUELLE DE LA BARRE DE NAVIGATION (Correction ici)
-    document.querySelectorAll('.nav-item').forEach(btn => {
-        btn.classList.remove('active');
-        // On compare le texte du bouton (LUN, MAR, etc.) avec le début du jour
-        if(btn.innerText.trim() === day.substring(0,3).toUpperCase()) {
-            btn.classList.add('active');
-        }
-    });
-
-    window.scrollTo(0,0);
-}
-
-// 4. DÉTECTION AUTOMATIQUE DU JOUR AU CHARGEMENT
+// --- DÉTECTION AUTO AU CHARGEMENT ---
 window.addEventListener('DOMContentLoaded', () => {
     const jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
     const indexActuel = new Date().getDay();
@@ -238,9 +162,5 @@ window.addEventListener('DOMContentLoaded', () => {
     // Si on est dimanche, on bascule sur Lundi
     if (indexActuel === 0) jourACharger = "Lundi";
 
-    console.log("Chargement auto du jour :", jourACharger); // Pour vérifier dans la console
     loadDay(jourACharger);
 });
-
-// Garde tes fonctions startTimer, resetTimer et toggleSetCheck inchangées en dessous
-};
