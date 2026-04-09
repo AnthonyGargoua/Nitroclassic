@@ -145,4 +145,24 @@ function toggleSetCheck(btn) {
     btn.classList.toggle('checked');
 }
 
-window.onload = () => loadDay('Lundi');
+window.onload = () => {
+    // 1. On récupère l'index du jour actuel (0 pour Dimanche, 1 pour Lundi, etc.)
+    const dayIndex = new Date().getDay();
+    
+    // 2. On crée une correspondance entre l'index et tes noms de jours
+    const daysMap = {
+        1: 'Lundi',
+        2: 'Mardi',
+        3: 'Mercredi',
+        4: 'Jeudi',
+        5: 'Vendredi',
+        6: 'Samedi',
+        0: 'Lundi' // Si c'est Dimanche (repos), on affiche le programme du Lundi par défaut
+    };
+
+    // 3. On récupère le nom du jour
+    const currentDay = daysMap[dayIndex];
+
+    // 4. On charge le programme
+    loadDay(currentDay);
+};
