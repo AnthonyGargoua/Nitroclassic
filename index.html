@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ON AIR - PPL PRO</title>
-    <link rel="apple-touch-icon" href="https://via.placeholder.com/180/000000/FFFFFF?text=OA">
+    <title>ON AIR - TRAINING</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <div class="bg-gradient"></div>
-
     <header>
         <div class="header-content">
-    <span class="brand">ON <span class="accent">AIR</span></span>
-    <h1 id="current-day-name">Lundi</h1>
-    <div class="session-meta">
-        <p id="current-specialty">Push - Pecs/Épaules/Triceps</p>
-        <p id="session-duration"><i class="far fa-clock"></i> 75 min</p> </div>
-</div>
+            <span class="brand">ON <span class="accent">AIR</span></span>
+            <h1 id="current-day-name">Lundi</h1>
+            <div class="session-meta">
+                <p id="current-specialty">Push - Pecs/Epaules</p>
+                <p id="session-duration"><i class="far fa-clock"></i> -- min</p>
+            </div>
+        </div>
     </header>
 
     <main id="app">
-        <div id="floating-timer" class="hidden">
+        <div id="floating-timer" class="hidden" onclick="resetTimer()">
             <span id="timer-display">01:30</span>
-            <button onclick="resetTimer()"><i class="fas fa-times"></i></button>
         </div>
 
         <section id="workout-list">
@@ -33,13 +30,13 @@
     </main>
 
     <nav class="tab-bar">
-        <button onclick="loadDay('Lundi')" class="nav-item active"><span>Lun</span></button>
-        <button onclick="loadDay('Mardi')" class="nav-item"><span>Mar</span></button>
-        <button onclick="loadDay('Mercredi')" class="nav-item"><span>Mer</span></button>
-        <button onclick="loadDay('Jeudi')" class="nav-item"><span>Jeu</span></button>
-        <button onclick="loadDay('Vendredi')" class="nav-item"><span>Ven</span></button>
-        <button onclick="loadDay('Samedi')" class="nav-item"><span>Sam</span></button>
-        <div class="safe-area-spacer"></div> </nav>
+        <button onclick="loadDay('Lundi')" class="nav-item"><span>LUN</span></button>
+        <button onclick="loadDay('Mardi')" class="nav-item"><span>MAR</span></button>
+        <button onclick="loadDay('Mercredi')" class="nav-item"><span>MER</span></button>
+        <button onclick="loadDay('Jeudi')" class="nav-item"><span>JEU</span></button>
+        <button onclick="loadDay('Vendredi')" class="nav-item"><span>VEN</span></button>
+        <button onclick="loadDay('Samedi')" class="nav-item"><span>SAM</span></button>
+    </nav>
 
     <script src="script.js"></script>
 </body>
