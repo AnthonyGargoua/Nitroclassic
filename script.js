@@ -120,6 +120,10 @@ function loadDay(day) {
 
 // --- LOGIQUE DU TIMER ---
 function startTimer(seconds) {
+    // Petit hack : on déclenche une micro-vibration de 1ms au clic
+    // Cela "déverrouille" l'autorisation de vibrer pour Safari
+    if (navigator.vibrate) navigator.vibrate(1);
+
     clearInterval(timerInterval);
     const timerBar = document.getElementById('floating-timer');
     const display = document.getElementById('timer-display');
@@ -140,10 +144,9 @@ function startTimer(seconds) {
             clearInterval(timerInterval);
             display.innerText = "GO !";
             
-            // FONCTION VIBRATION
-            // Séquence : 500ms vibration, 200ms pause, 500ms vibration
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([500, 200, 500]);
+            // On tente la vibration finale
+            if (navigator.vibrate) {
+                navigator.vibrate([400, 200, 400]); 
             }
         }
     }, 1000);
