@@ -206,3 +206,42 @@ input[type="number"]:focus {
     border-radius: 0 0 3px 3px;
     box-shadow: 0 0 10px var(--neon-blue);
 }
+/* Meta data sous le titre */
+.session-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+#session-duration {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.1);
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+/* Sélecteur de minuteur dans les cartes */
+.timer-selector {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+}
+
+.timer-opt {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    padding: 8px 0;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.timer-opt:active {
+    background: var(--neon-blue);
+    color: black;
+}
